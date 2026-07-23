@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceDataService } from '../../services/service-data.service';
+import { Personaje } from '../../models/personaje';
 
 @Component({
   selector: 'app-drangonball-z',
@@ -9,14 +10,14 @@ import { ServiceDataService } from '../../services/service-data.service';
 })
 export class DrangonballZComponent implements OnInit {
 
-  personaje:any={}
+  personajes:Personaje[]=[];
 
 
 constructor(private service: ServiceDataService) {
     }
   ngOnInit(): void {
     this.service.findAll().subscribe(data=>{
-      this.personaje=data
+      this.personajes=data.items;
     })
 
     
@@ -25,7 +26,7 @@ constructor(private service: ServiceDataService) {
    
 data():void{
 
-  console.log(this.personaje.items)
+  console.log(this.personajes)
 
 }
 
