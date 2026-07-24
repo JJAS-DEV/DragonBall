@@ -1,4 +1,3 @@
-<p (click)="data()">drangonball-z works!</p>
 
 <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-5">
     @for (personaje of personajes; track $index){
@@ -30,4 +29,10 @@
 
 
     }
+</div>
+
+<div style="width: 100%;margin: auto; border:2px red solid">
+
+    <paginador [paginador]="datos.meta" [url]="url"  />
+
 </div>

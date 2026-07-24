@@ -11,6 +11,8 @@ export const routes: Routes = [
 {
      path:'personajes',
     component:DrangonballZComponent
-}
+},
+{  path:'personajes/page/:page',
+    component:DrangonballZComponent}
 
 ];

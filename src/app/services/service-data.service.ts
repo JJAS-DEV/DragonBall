@@ -14,4 +14,9 @@ export class ServiceDataService {
     return this.http.get<any>(this.url+"/characters");
   }
 
+  
+  findAllpage(page:number):Observable<any>{
+    return this.http.get<any>(this.url+"/characters?page="+page);
+  }
+
 }
