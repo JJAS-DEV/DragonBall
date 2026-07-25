@@ -1,0 +1,12 @@
+.glow {
+  color: #ff9114; /* verde fosforescente */
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+}
+
+.glow:hover {
+  text-shadow: 0 0 5px #ff8614,
+               0 0 10px #ff9d14,
+               0 0 20px #ffa114;
+  color: #39ff14;
+}

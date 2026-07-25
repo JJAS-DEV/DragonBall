@@ -1,0 +1,19 @@
+.personaje-img {
+  width: 100%;
+  height: 300px;
+      object-fit: contain; /* Muestra la imagen completa */
+    background-color: #fff;
+}
+
+
+.img-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-hover:hover {
+  transform: scale(1.1);       /* aumenta el tamaño */
+  box-shadow: 0 8px 16px rgba(200, 213, 13, 0.771); /* sombra para resaltar */
+  z-index: 2;                  /* asegura que quede por encima */
+}
+
+

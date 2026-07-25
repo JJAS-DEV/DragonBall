@@ -1,0 +1,38 @@
+
+<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-5">
+    @for (personaje of personajes; track $index){
+
+    <div class="col">
+        <div class="col">
+            <div class="card bg-dark h-100 shadow-sm ">
+                <div class="card-body bg-white">
+                    <h5 class="card-title ">{{ personaje.name }}</h5>
+                        <img [src]="personaje.image" class="personaje-img mt-3 img-hover"
+                            alt="Imagen de {{ personaje.name }}">
+
+                </div>
+
+                <div >
+
+                    <!-- Opcional: Un footer para acciones -->
+                    <div class="card-footer bg-dark color-white border-top-0 " style="color:white">
+                        <p >Gremio: </p>
+                            <p>{{personaje.affiliation}}</p>
+                        <p>Kit-Base: {{personaje.ki}}</p>
+                        <button class="btn btn-outline-primary w-100">Ver detalle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    }
+</div>
+
+<div style="width: 100%;margin: auto; border:2px red solid">
+
+    <paginador [paginador]="datos.meta" [url]="url"  />
+
+</div>
