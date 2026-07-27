@@ -19,4 +19,7 @@ export class ServiceDataService {
     return this.http.get<any>(this.url+"/characters?page="+page);
   }
 
+findAllpageAndName(name:String):Observable<any>{
+    return this.http.get<any>(this.url+"/characters?name="+name);
+  }
 }

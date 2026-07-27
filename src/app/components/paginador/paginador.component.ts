@@ -16,15 +16,21 @@ export class PaginadorComponent {
 
 
 get visiblePages(): number[] {
-  // 1. Calcular en qué bloque estoy
-  const blockIndex = Math.floor(this.paginador.currentPage / 4);
+    const half = Math.floor(this.blockSize / 2);
 
-  // 2. Calcular inicio y fin del bloque
-  const start = blockIndex * this.blockSize;
-  const end = Math.min(start + this.blockSize, this.paginador.totalPages);
+  let start = this.paginador.currentPage - half;
+  let end = this.paginador.currentPage + half - 1; // 👈 ajuste
 
-  // 3. Generar el arreglo de páginas visibles
-  return Array.from({ length: end - start }, (_, i) => start + i + 1);
+  if (start < 1) {
+    start = 1;
+    end = this.blockSize;
+  }
+  if (end > this.paginador.totalPages) {
+    end = this.paginador.totalPages;
+    start = Math.max(1, end - this.blockSize + 1);
+  }
+
+  return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 }
 
 
