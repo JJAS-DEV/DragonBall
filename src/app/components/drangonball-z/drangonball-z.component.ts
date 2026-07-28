@@ -27,9 +27,13 @@ export class DrangonballZComponent implements OnInit {
   ngOnInit(): void {
 
     if (this.personajes == undefined || this.personajes.length == 0) {
-      console.log('consulta findAll');
+      this.buscadorsinfiltro();
 
-          this.buscadorsinfiltro();
+
+
+
+
+
 
 
       // // this.service.findAll().subscribe(u => this.users = u);
@@ -49,37 +53,66 @@ export class DrangonballZComponent implements OnInit {
 
 
     }
-    this.typeNombre();
-    this.buscadorsinfiltro()
+    this.sharingDataService.typeBuscador.subscribe(buscador => {
+      if (buscador.trim() === "") {
+              console.log("entro aqui" + buscador)
 
+                    this.buscadorsinfiltro();
+
+
+
+
+
+      }else{
+            this.typeNombre();
+
+
+
+
+      }
+
+    })
 
 
   }
   typeNombre() {
 
     this.filtracionService.buscadorPornombre();
+ this.sharingDataService.datos.subscribe(d => {
+
+      this.personajes = d
+
+
+    })
+
+
 
 
   }
   buscadorsinfiltro() {
 
-    
 
-     this.route.paramMap.subscribe(params => {
-        const page = +(params.get('page') || '0');
 
-          this.filtracionService.findAll(page);
+    this.route.paramMap.subscribe(params => {
+      const page = +(params.get('page') || '0');
 
-  })
-    
-      this.sharingDataService.datos.subscribe(d => {
-        
-        console.log("entra")
-                this.personajes=d.items;
+      this.filtracionService.findAll(page);
 
-        this.datos = d;
+    })
 
-      })
+    this.sharingDataService.datos.subscribe(d => {
+
+      console.log("entra")
+      this.personajes = d.items;
+
+      this.datos = d;
+
+    })
+
+
+
+
+
 
 
 

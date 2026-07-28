@@ -9,9 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FiltracionService {
 
-  buscador!: string;
   lista: Personaje[];
-  datos:any;
+  datos: any;
   constructor(private sharingDataService: SharingDataService,
     private serviceDataService: ServiceDataService, private route: ActivatedRoute) {
     this.lista = []
@@ -20,47 +19,57 @@ export class FiltracionService {
 
   buscadorPornombre() {
     this.sharingDataService.typeBuscador.subscribe(personaje => {
-      this.serviceDataService.findAllpageAndName(personaje).subscribe(personajes => {
-        this.lista = personajes;
 
-        console.log("busquedaPorNombre: {" + this.lista.map(p => p.name).join(", ") + "}");
+    
+        this.serviceDataService.findAllpageAndName(personaje).subscribe(personajes => {
+          this.lista = personajes;
+
+          console.log("busquedaPorNombre: {" + this.lista.map(p => p.name).join(", ") + "}");
 
 
-      })
+          this.sharingDataService.datos.emit(this.lista);
+
+
+
+        })
+
+    
+
     })
 
 
 
   }
 
-  findAll(page:number) {
+  findAll(page: number) {
 
-      console.log('consulta findAll en filters');
+    this.route.paramMap.subscribe(params => {
 
-      // this.service.findAll().subscribe(u => this.users = u);
-
-      this.route.paramMap.subscribe(params => {
-
-        this.serviceDataService.findAllpage(page).subscribe(pageable => {
+      this.serviceDataService.findAllpage(page).subscribe(pageable => {
         this.datos = pageable;
 
-          this.sharingDataService.datos.emit(this.datos);
-          
-          
-        });
-
-      })
-    }
+        this.sharingDataService.datos.emit(this.datos);
 
 
+      });
 
+    })
 
+  }
+  // this.service.findAll().subscribe(u => this.users = u);
 
 
 
 
 
-  
+
+
+
+
+
+
+
+
 
 
 }
