@@ -20,6 +20,8 @@ export class DrangonballZComponent implements OnInit {
   datos: any = {};
   url: string = "/personajes/page/"
 
+  buscador: string = "";
+
 
   constructor(private service: ServiceDataService, private route: ActivatedRoute, private sharingDataService: SharingDataService, private filtracionService: FiltracionService) {
   }
@@ -53,18 +55,20 @@ export class DrangonballZComponent implements OnInit {
 
 
     }
-    this.sharingDataService.typeBuscador.subscribe(buscador => {
-      if (buscador.trim() === "") {
-              console.log("entro aqui" + buscador)
+    this.sharingDataService.typeBuscador.subscribe(b => {
+      console.log("------------------> entro aqui ----------> " + b)
+      this.buscador = b;
+      if (this.buscador === "") {
+        console.log("entro aqui" + this.buscador)
 
-                    this.buscadorsinfiltro();
+        this.buscadorsinfiltro();
 
 
 
 
 
-      }else{
-            this.typeNombre();
+      } else {
+        this.typeNombre();
 
 
 
@@ -75,12 +79,23 @@ export class DrangonballZComponent implements OnInit {
 
 
   }
+  lista: Personaje[] = [];
+
   typeNombre() {
 
+
     this.filtracionService.buscadorPornombre();
- this.sharingDataService.datos.subscribe(d => {
+    this.sharingDataService.datos.subscribe(d => {
 
       this.personajes = d
+      this.lista=[]
+
+      const limite = Math.min(this.personajes.length, 10);
+
+      for (let i = 0; i < limite; i++) {
+        this.lista.push(this.personajes[i]);
+      }
+      this.personajes = this.lista;
 
 
     })

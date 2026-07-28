@@ -20,20 +20,27 @@ export class FiltracionService {
   buscadorPornombre() {
     this.sharingDataService.typeBuscador.subscribe(personaje => {
 
-    
-        this.serviceDataService.findAllpageAndName(personaje).subscribe(personajes => {
-          this.lista = personajes;
 
-          console.log("busquedaPorNombre: {" + this.lista.map(p => p.name).join(", ") + "}");
+      this.serviceDataService.findAllpageAndName(personaje).subscribe(personajes => {
+        
+        const limite = Math.min(personajes.length, 10);
+        // for (let i = 0; i < limite; i++) {
+        //   this.lista.push(personajes[i]);
+        // }
+
+        this.lista=personajes;
+
+        console.log("busquedaPorNombre: {" + this.lista.map(p => p.name).join(", ") + "}");
 
 
-          this.sharingDataService.datos.emit(this.lista);
+        this.sharingDataService.datos.emit(this.lista);
 
 
 
-        })
 
-    
+      })
+
+
 
     })
 
