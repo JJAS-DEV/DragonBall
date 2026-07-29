@@ -7,7 +7,7 @@ export class SharingDataService {
 
   private _typeBuscador:EventEmitter<string>=new EventEmitter();
   private _datos:EventEmitter<any>=new EventEmitter();
-    private _buscar:EventEmitter<boolean>=new EventEmitter();
+  private _buscar:EventEmitter<boolean>=new EventEmitter();
 
 
 
@@ -31,5 +31,6 @@ export class SharingDataService {
     return this._buscar;
 
   }
+
 
 }

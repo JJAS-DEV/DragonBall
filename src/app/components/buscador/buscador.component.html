@@ -1,4 +1,24 @@
-<form class="d-flex" role="search">
-  <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"  (input)="onSearch($event)">
-  <button class="btn btn-outline-success" type="submit">Buscar</button>
-</form>
+<div class="position-relative w-100 mb-2">
+  <input type="text" [(ngModel)]="termino"
+         (ngModelChange)="buscar($event)" 
+          class="form-control" placeholder="Buscar...">
+
+  @if (resultados.length > 0) {
+    <ul class="list-group position-absolute w-100 mt-1">
+      @for (item of resultados; track item) {
+        <li class="list-group-item list-group-item-action"
+            (click)="seleccionar(item)">
+          {{ item.name }}
+
+        </li>
+
+      
+        
+      }
+    </ul>
+
+
+  }
+
+
+  <p>Valor actual: {{ termino }}</p>

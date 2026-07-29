@@ -28,8 +28,7 @@ export class DrangonballZComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.personajes == undefined || this.personajes.length == 0) {
-      this.buscadorsinfiltro();
+    this.buscadorsinfiltro();
 
 
 
@@ -38,72 +37,30 @@ export class DrangonballZComponent implements OnInit {
 
 
 
-      // // this.service.findAll().subscribe(u => this.users = u);
+    // // this.service.findAll().subscribe(u => this.users = u);
 
-      // this.route.paramMap.subscribe(params => {
-      //   const page = +(params.get('page') || '0');
+    // this.route.paramMap.subscribe(params => {
+    //   const page = +(params.get('page') || '0');
 
-      //   this.service.findAllpage(page).subscribe(pageable => {
-      //     this.personajes = pageable.items;
-      //     this.datos = pageable;
-      //   });
-
-
-      // })
+    //   this.service.findAllpage(page).subscribe(pageable => {
+    //     this.personajes = pageable.items;
+    //     this.datos = pageable;
+    //   });
 
 
-
-
-    }
-    this.sharingDataService.typeBuscador.subscribe(b => {
-      console.log("------------------> entro aqui ----------> " + b)
-      this.buscador = b;
-      if (this.buscador === "") {
-        console.log("entro aqui" + this.buscador)
-
-        this.buscadorsinfiltro();
+    // })
 
 
 
 
 
-      } else {
-        this.typeNombre();
 
-
-
-
-      }
-
-    })
 
 
   }
   lista: Personaje[] = [];
 
-  typeNombre() {
 
-
-    this.filtracionService.buscadorPornombre();
-    this.sharingDataService.datos.subscribe(d => {
-
-      this.personajes = d
-      this.lista=[]
-
-      const limite = Math.min(this.personajes.length, 10);
-
-      for (let i = 0; i < limite; i++) {
-        this.lista.push(this.personajes[i]);
-      }
-      this.personajes = this.lista;
-
-
-    })
-
-
-
-
-  }
   buscadorsinfiltro() {
 
 
@@ -116,11 +73,21 @@ export class DrangonballZComponent implements OnInit {
     })
 
     this.sharingDataService.datos.subscribe(d => {
-
-      console.log("entra")
+      console.log("el tipo de dato es" + typeof d);
+if (d.items) {
+      // Caso: la API devolvió objeto con items
       this.personajes = d.items;
+      console.log("entra objeto con items");
+    } else {
+      // Caso: la API devolvió directamente un objeto (o varios personajes)
+      // Normalizamos: si es un solo objeto, lo metemos en array
+      this.personajes = Array.isArray(d) ? d : [d];
+      console.log("entra objeto directo");
+    }
 
-      this.datos = d;
+
+
+
 
     })
 
