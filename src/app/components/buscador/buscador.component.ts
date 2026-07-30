@@ -92,7 +92,7 @@ export class BuscadorComponent implements OnInit {
 
   affiliation(affiliation: string) {
 
-    if (affiliation == "sin_filtro") {
+    if (affiliation === "sin_filtro") {
       this.filtrado.affiliation = "";
 
 

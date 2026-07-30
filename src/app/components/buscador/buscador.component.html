@@ -28,13 +28,8 @@
 @if(filtros) {
   <div class="d-flex align-items-start mt-3">
     
-    <!-- Botón de buscar -->
-    <button class="btn btn-success me-2" (click)="Buscador()">
-      Buscar
-    </button>
-
-    <!-- Dropdown -->
-    <div class="dropdown">
+    <!-- Dropdown a la izquierda -->
+    <div class="dropdown me-2">
       <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
         @if(filtrado.affiliation === "") {
           seleccione una opción
@@ -45,15 +40,22 @@
       <ul class="dropdown-menu">
         @for(afiliacion of opcionesRaza; track $index) {
           <li>
-            <a class="dropdown-item" (click)="filtrado.affiliation = afiliacion">
+            <a class="dropdown-item" (click)="affiliation(afiliacion)">
               {{ afiliacion }}
             </a>
           </li>
         }
       </ul>
     </div>
+
+    <!-- Botón de buscar alineado a la derecha -->
+    <button class="btn btn-success ms-auto" (click)="Buscador()">
+      Buscar
+    </button>
   </div>
 }
+
+
 
 
 
