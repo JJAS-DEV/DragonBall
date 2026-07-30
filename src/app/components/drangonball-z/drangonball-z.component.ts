@@ -74,16 +74,17 @@ export class DrangonballZComponent implements OnInit {
 
     this.sharingDataService.datos.subscribe(d => {
       console.log("el tipo de dato es" + typeof d);
-if (d.items) {
-      // Caso: la API devolvió objeto con items
-      this.personajes = d.items;
-      console.log("entra objeto con items");
-    } else {
-      // Caso: la API devolvió directamente un objeto (o varios personajes)
-      // Normalizamos: si es un solo objeto, lo metemos en array
-      this.personajes = Array.isArray(d) ? d : [d];
-      console.log("entra objeto directo");
-    }
+      if (d.items) {
+        // Caso: la API devolvió objeto con items
+        this.datos = d;
+        this.personajes = d.items;
+        console.log("entra objeto con items");
+      } else {
+        // Caso: la API devolvió directamente un objeto (o varios personajes)
+        // Normalizamos: si es un solo objeto, lo metemos en array
+        this.personajes = Array.isArray(d) ? d : [d];
+        console.log("entra objeto directo");
+      }
 
 
 

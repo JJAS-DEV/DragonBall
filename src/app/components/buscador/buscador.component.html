@@ -20,5 +20,50 @@
 
   }
 
+  {{termino}}
+    <button class="btn btn-outline-primary mt-2" (click)="toggleFiltros()">
+        {{ filtros ? 'Ocultar filtros' : 'Más filtros' }}
+  </button>
 
-  <p>Valor actual: {{ termino }}</p>
+@if(filtros) {
+  <div class="d-flex align-items-start mt-3">
+    
+    <!-- Botón de buscar -->
+    <button class="btn btn-success me-2" (click)="Buscador()">
+      Buscar
+    </button>
+
+    <!-- Dropdown -->
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        @if(filtrado.affiliation === "") {
+          seleccione una opción
+        } @else {
+          {{ filtrado.affiliation }}
+        }
+      </button>
+      <ul class="dropdown-menu">
+        @for(afiliacion of opcionesRaza; track $index) {
+          <li>
+            <a class="dropdown-item" (click)="filtrado.affiliation = afiliacion">
+              {{ afiliacion }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+}
+
+
+
+  <!-- 
+  para los filtros
+  
+  let params = new HttpParams()
+  .set('race', 'Saiyan')
+  .set('affiliation', 'Z fighter')
+  .set('powerLevel', '9000');
+
+this.http.get('https://dragonball-api.com/api/characters', { params })
+  .subscribe(res => console.log(res)); -->

@@ -1,9 +1,9 @@
 export class Filtracion {
 
-    name!:string;
-    gender!:String;
-    race!:String;
-    affiliation!:String;    
+    name:string="";
+    gender:String="";
+    race:string="";
+    affiliation:string="";    
 
 
 
