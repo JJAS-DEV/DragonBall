@@ -12,9 +12,46 @@
 
 .img-hover:hover {
 transform: scale(1.2);       /* aumenta el tamaño */
-box-shadow: 0 8px 16px rgba(240, 240, 3, 0.968); /* sombra para resaltar */
 z-index: 2;
               /* asegura que quede por encima */
+}
+.Z-Fighter:hover{
+box-shadow: 0 8px 16px rgba(240, 240, 3, 0.968); /* sombra para resaltar */
+
+}
+.Freelancer:hover {
+  box-shadow: 0 8px 16px rgba(0,255,0,0.9); /* verde */
+}
+
+
+.Army-of-Frieza:hover {
+  box-shadow: 0 8px 16px rgba(253, 6, 208, 0.9); /* rojo */
+}
+
+.Pride-Troopers:hover {
+  box-shadow: 0 8px 16px rgba(0,0,255,0.9); /* azul */
+}
+
+.Assistant-of-Vermoud:hover {
+  box-shadow: 0 8px 16px rgba(128,0,128,0.9); /* púrpura */
+}
+
+.Villain:hover {
+  box-shadow: 0 8px 16px rgb(242, 2, 2); /* amarillo */
+}
+
+.Other:hover {
+  box-shadow: 0 8px 16px rgba(123, 47, 237, 0.9); /* gris */
+}
+
+.abrir-modal {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
 }
 
 

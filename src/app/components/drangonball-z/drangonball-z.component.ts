@@ -6,11 +6,12 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { BuscadorComponent } from "../buscador/buscador.component";
 import { SharingDataService } from '../../services/sharing-data/sharing-data.service';
 import { FiltracionService } from '../../services/filtracion/filtracion.service';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-drangonball-z',
-  imports: [PaginadorComponent, RouterModule, BuscadorComponent, BuscadorComponent],
+  imports: [PaginadorComponent, RouterModule, BuscadorComponent, BuscadorComponent,CommonModule],
   templateUrl: './drangonball-z.component.html',
   styleUrl: './drangonball-z.component.css'
 })
@@ -19,8 +20,17 @@ export class DrangonballZComponent implements OnInit {
   personajes: Personaje[] = [];
   datos: any = {};
   url: string = "/personajes/page/"
+  open:Personaje=new Personaje();
+
+
 
   buscador: string = "";
+
+
+    openModal(p: Personaje) {
+    this.open = p;
+    console.log("modal abierto")
+  }
 
 
   constructor(private service: ServiceDataService, private route: ActivatedRoute, private sharingDataService: SharingDataService, private filtracionService: FiltracionService) {
@@ -103,6 +113,19 @@ export class DrangonballZComponent implements OnInit {
 
 
 
+
+
+
+// Mapa que traduce nombres con espacios a clases CSS válidas
+mapaClases: any = {
+  'Z Fighter': 'Z-Fighter',
+  'Freelancer': 'Freelancer',
+  'Army of Frieza': 'Army-of-Frieza',
+  'Pride Troopers': 'Pride-Troopers',
+  'Assistant of Vermoud': 'Assistant-of-Vermoud',
+  'Villain': 'Villain',
+  'Other': 'Other',
+};
 
 
 
