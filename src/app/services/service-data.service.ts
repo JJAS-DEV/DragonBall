@@ -49,12 +49,21 @@ if (this.filtrado.name && this.filtrado.name.trim() !== '') {
 if (this.filtrado.affiliation && this.filtrado.affiliation.trim() !== '') {
   params = params.set('affiliation', this.filtrado.affiliation);
 }
+if (this.filtrado.gender && this.filtrado.gender.trim() !== '') {
+  params = params.set('gender', this.filtrado.gender);
+}
+if (this.filtrado.race && this.filtrado.race.trim() !== '') {
+  params = params.set('race', this.filtrado.race);
+}
+
   
     return this.http.get<any>(this.url+"/characters?",{params});
-  
+  }
 
-    }
-
+  findById(id:number):Observable<any>{
+    
+    return this.http.get<any>(this.url+"/characters/"+id);
+  }
 
 
 }

@@ -7,11 +7,13 @@ import { BuscadorComponent } from "../buscador/buscador.component";
 import { SharingDataService } from '../../services/sharing-data/sharing-data.service';
 import { FiltracionService } from '../../services/filtracion/filtracion.service';
 import { CommonModule } from '@angular/common';
+import { CarrucelImagenesComponent } from "../carrucel-imagenes/carrucel-imagenes.component";
+import { Personaje_seleccionado } from '../../models/Personaje_seleccionado';
 
 
 @Component({
   selector: 'app-drangonball-z',
-  imports: [PaginadorComponent, RouterModule, BuscadorComponent, BuscadorComponent,CommonModule],
+  imports: [PaginadorComponent, RouterModule, BuscadorComponent, BuscadorComponent, CommonModule, CarrucelImagenesComponent],
   templateUrl: './drangonball-z.component.html',
   styleUrl: './drangonball-z.component.css'
 })
@@ -21,15 +23,38 @@ export class DrangonballZComponent implements OnInit {
   datos: any = {};
   url: string = "/personajes/page/"
   open:Personaje=new Personaje();
+  personaje_seleccionado:Personaje_seleccionado=new Personaje_seleccionado();
+
+ loading: boolean = false;
 
 
 
   buscador: string = "";
 
-
+  
     openModal(p: Personaje) {
+      this.loading = true; // Establecer loading en true al abrir el modal
+      
     this.open = p;
-    console.log("modal abierto")
+
+    this.service.findById(p.id).subscribe(personaje => {
+      this.sharingDataService.personaje.emit(personaje);
+      this.open = personaje;
+
+
+
+
+    });
+    this.sharingDataService.mostrartransformaciones.subscribe(mostrar => {  
+          this.loading = mostrar; // actualiza el estado de loading según el valor emitido
+    });
+    this.personaje_seleccionado= new Personaje_seleccionado();
+
+    this.sharingDataService.personajeSeleccionado.emit(this.personaje_seleccionado);
+
+
+
+
   }
 
 
@@ -38,7 +63,12 @@ export class DrangonballZComponent implements OnInit {
 
   ngOnInit(): void {
 
+
     this.buscadorsinfiltro();
+
+    this.sharingDataService.personajeSeleccionado.subscribe(ps => {
+      this.personaje_seleccionado = ps;
+    });
 
 
 

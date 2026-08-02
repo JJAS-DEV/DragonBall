@@ -1,0 +1,23 @@
+.carousel-item img {
+    height: 100px;
+    width: auto;
+    object-fit: contain;
+    margin: auto;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+
+.img-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-hover:hover {
+transform: scale(1.2);       /* aumenta el tamaño */
+z-index: 2;
+              /* asegura que quede por encima */
+}

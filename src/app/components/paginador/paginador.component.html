@@ -1,48 +1,44 @@
-<div class="d-flex justify-content-center mt-2">
+<div class="d-flex justify-content-center flex-wrap mt-2">
+  <nav aria-label="Page navigation">
+    <ul class="pagination flex-wrap custom-pagination">
+    <!-- se verá pequeño en móviles -->
+     <!-- tamaño normal en tablets -->
+       <!-- grande en pantallas grandes -->
 
-    <nav aria-label="Page navigation example ">
-        <ul class="pagination pagination-lg">
+      <!-- Primera página -->
+      <li class="page-item" [class.disabled]="paginador.currentPage === 1">
+        <a class="page-link" [routerLink]="[url + 1]" aria-label="First">
+          <<
+        </a>
+      </li>
 
-    <li class="page-item">
-                <a class="page-link btn" >
-                    <span aria-hidden="true"></span>
-                    <span class="sr-only" [routerLink]="[url +1]">
+      <!-- Anterior -->
+      <li class="page-item" [class.disabled]="paginador.currentPage === 1">
+        <a class="page-link" [routerLink]="[url + (paginador.currentPage - 1)]" aria-label="Previous">
+          &laquo;
+        </a>
+      </li>
 
-                        <<
-                    </span>
-                </a>
-            </li>
+      <!-- Páginas visibles -->
+      @for(pagina of visiblePages; track $index) {
+        <li class="page-item" [class.active]="pagina === paginador.currentPage">
+          <a class="page-link" [routerLink]="[url + pagina]">{{ pagina }}</a>
+        </li>
+      }
 
-            
-            <li class="page-item" [class.disabled]="paginador.currentPage === 1">
-                <a class="page-link btn"  aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only" [routerLink]="[url +(paginador.currentPage - 1)]">Previous</span>
-                </a>
-            </li>
+      <!-- Siguiente -->
+      <li class="page-item" [class.disabled]="paginador.currentPage === paginador.totalPages">
+        <a class="page-link" [routerLink]="[url + (paginador.currentPage + 1)]" aria-label="Next">
+          &raquo;
+        </a>
+      </li>
 
-
-            @for(pagina of visiblePages; track $index){
-            <li class="page-item" [class.active]="pagina === paginador.currentPage">
-            <a class="page-link" [routerLink]="[url+pagina]">{{pagina}}</a></li>
-
-
-            }
-            <li class="page-item" [class.disabled]="paginador.currentPage === paginador.totalPages ">
-                <a class="page-link btn" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only" [routerLink]="[url +(paginador.currentPage + 1)]"
-                          >
-                    Next</span>
-                </a>
-            </li>
-            <li class="page-item" >
-                <a class="page-link btn" aria-label="Next">
-                    <span class="sr-only" [routerLink]="[url +paginador.totalPages]"
-                          >
-                    >></span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+      <!-- Última página -->
+      <li class="page-item" [class.disabled]="paginador.currentPage === paginador.totalPages">
+        <a class="page-link" [routerLink]="[url + paginador.totalPages]" aria-label="Last">
+          >>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </div>

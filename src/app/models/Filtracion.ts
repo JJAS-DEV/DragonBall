@@ -1,9 +1,13 @@
 export class Filtracion {
 
     name:string="";
-    gender:String="";
+    gender:string="";
     race:string="";
     affiliation:string="";    
+
+
+    
+
 
 
 

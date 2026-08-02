@@ -1,4 +1,4 @@
-<div class="position-relative w-100 mb-2">
+<div class="position-relative w-100 mb-2" style="margin-top: 70px;">
   <input type="text" [(ngModel)]="termino"
          (ngModelChange)="buscar($event)" 
           class="form-control" placeholder="Buscar...">
@@ -26,10 +26,13 @@
   </button>
 
 @if(filtros) {
-  <div class="d-flex align-items-start mt-3">
+  <div class="d-flex align-items-start mt-3 flex-wrap">
     
-    <!-- Dropdown a la izquierda -->
-    <div class="dropdown me-2">
+    <!-- Dropdown a la izquierda   -->
+        <p class="form-label me-2">Clan:</p>
+
+     <!-- filtro de afiliación -->
+    <div class="dropdown me-2 mb-2">
       <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
         @if(filtrado.affiliation === "") {
           seleccione una opción
@@ -42,6 +45,49 @@
           <li>
             <a class="dropdown-item" (click)="affiliation(afiliacion)">
               {{ afiliacion }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+   <p class="form-label me-2">Genero:</p>
+        <!-- filtro de genero -->
+ <div class="dropdown me-2">
+
+      <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        @if(filtrado.gender === "") {
+          seleccione una opción
+        } @else {
+          {{ filtrado.gender }}
+        }
+      </button>
+      <ul class="dropdown-menu">
+        @for(genero of opcionesGenero; track $index) {
+          <li>
+            <a class="dropdown-item" (click)="seleccion_genero(genero)">
+              {{ genero }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+        <p class="form-label me-2">Especie:</p>
+
+             <!-- filtro de raza -->
+    <div class="dropdown me-2">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        @if(filtrado.race === "") {
+          seleccione una opción
+        } @else {
+          {{ filtrado.race }}
+        }
+      </button>
+      <ul class="dropdown-menu">
+        @for(raza of opcionesRace; track $index) {
+          <li>
+            <a class="dropdown-item" (click)="seleccion_race(raza)">
+              {{ raza }}
             </a>
           </li>
         }

@@ -1,3 +1,6 @@
+import { originPlanet } from "./originPlanet";
+import { transformations } from "./transformations";
+
 export class Personaje {
     id!:number;
     name!: string;
@@ -7,8 +10,11 @@ export class Personaje {
     maxKi!: string;
     description!: string;
     affiliation!: string;
-    originPlanet!:any;
     image!:string;
+    originPlanet: originPlanet= new originPlanet();
+    transformations: transformations[]= [];
+    
+   
 }
 
 
