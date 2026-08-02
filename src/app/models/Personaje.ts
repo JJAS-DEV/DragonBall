@@ -7,7 +7,7 @@ export class Personaje {
     maxKi!: string;
     description!: string;
     affiliation!: string;
-    originPlanet!:string;
+    originPlanet!:any;
     image!:string;
 }
 

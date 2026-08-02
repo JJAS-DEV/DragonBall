@@ -1,5 +1,16 @@
 .page-item.active .page-link {
-  background-color: orange;   /* fondo naranja */
-  border-color: orange;       /* borde naranja */
-  color: white;               /* texto blanco */
+    background-color: orange;
+    /* fondo naranja estilo aura */
+    border-color: gold;
+    /* borde dorado */
+    color: white;
+    /* texto blanco */
+    font-weight: bold;
+    /* texto más fuerte */
+    box-shadow: 0 0 15px gold,
+        /* aura dorada */
+        0 0 30px orange,
+        0 0 45px red;
+    transition: all 0.3s ease-in-out;
+    /* texto blanco */
 }

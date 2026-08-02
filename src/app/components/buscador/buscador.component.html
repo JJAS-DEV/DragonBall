@@ -1,0 +1,71 @@
+<div class="position-relative w-100 mb-2">
+  <input type="text" [(ngModel)]="termino"
+         (ngModelChange)="buscar($event)" 
+          class="form-control" placeholder="Buscar...">
+
+  @if (resultados.length > 0) {
+    <ul class="list-group position-absolute w-100 mt-1">
+      @for (item of resultados; track item) {
+        <li class="list-group-item list-group-item-action"
+            (click)="seleccionar(item)">
+          {{ item.name }}
+
+        </li>
+
+      
+        
+      }
+    </ul>
+
+
+  }
+
+  {{termino}}
+    <button class="btn btn-outline-primary mt-2" (click)="toggleFiltros()">
+        {{ filtros ? 'Ocultar filtros' : 'Más filtros' }}
+  </button>
+
+@if(filtros) {
+  <div class="d-flex align-items-start mt-3">
+    
+    <!-- Dropdown a la izquierda -->
+    <div class="dropdown me-2">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        @if(filtrado.affiliation === "") {
+          seleccione una opción
+        } @else {
+          {{ filtrado.affiliation }}
+        }
+      </button>
+      <ul class="dropdown-menu">
+        @for(afiliacion of opcionesRaza; track $index) {
+          <li>
+            <a class="dropdown-item" (click)="affiliation(afiliacion)">
+              {{ afiliacion }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <!-- Botón de buscar alineado a la derecha -->
+    <button class="btn btn-success ms-auto" (click)="Buscador()">
+      Buscar
+    </button>
+  </div>
+}
+
+
+
+
+
+  <!-- 
+  para los filtros
+  
+  let params = new HttpParams()
+  .set('race', 'Saiyan')
+  .set('affiliation', 'Z fighter')
+  .set('powerLevel', '9000');
+
+this.http.get('https://dragonball-api.com/api/characters', { params })
+  .subscribe(res => console.log(res)); -->

@@ -1,38 +1,105 @@
+<buscador />
 
+
+@if(this.personajes.length === 0){
+<div class="card bg-dark h-100 shadow-sm ">
+    <div class="card-body  bg-dark text-white">
+        <h5 class="card-title ">No se encontraron resultados</h5>
+    </div>
+</div>
+
+}@else {
 <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-5">
+
     @for (personaje of personajes; track $index){
 
+
+
     <div class="col">
+
         <div class="col">
             <div class="card bg-dark h-100 shadow-sm ">
-                <div class="card-body bg-white">
+                <div class="card-body  bg-dark text-white">
+
                     <h5 class="card-title ">{{ personaje.name }}</h5>
-                        <img [src]="personaje.image" class="personaje-img mt-3 img-hover"
-                            alt="Imagen de {{ personaje.name }}">
+                    <img [src]="personaje.image" class="personaje-img mt-3 img-hover" data-bs-toggle="modal"
+                        data-bs-target="#modalOscuro" [ngClass]="mapaClases[personaje.affiliation]"
+                        alt="Imagen de {{ personaje.name }}"
+                        (click)="openModal(personaje)">
 
                 </div>
 
-                <div >
+                <div>
 
                     <!-- Opcional: Un footer para acciones -->
                     <div class="card-footer bg-dark color-white border-top-0 " style="color:white">
-                        <p >Gremio: </p>
-                            <p>{{personaje.affiliation}}</p>
+                        <p>Gremio:{{personaje.affiliation}}</p>
                         <p>Kit-Base: {{personaje.ki}}</p>
-                        <button class="btn btn-outline-primary w-100">Ver detalle</button>
+                        <p>Raza: {{personaje.race}}</p>
+                        <p>Kit-Max: {{personaje.maxKi}}</p>
+                        <button class="btn btn-outline-primary w-100" data-bs-toggle="modal"
+                            data-bs-target="#modalOscuro" (click)="openModal(personaje)">Ver detalle</button>
                     </div>
                 </div>
+
             </div>
+
         </div>
 
     </div>
 
 
+    <!-- Modal -->
+<div class="modal fade m-3" id="modalOscuro" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">{{ open.name }}</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <!-- Imagen -->
+          <div class="col-12 col-md-6 text-center">
+            <img [src]="open.image"
+                 class="img-fluid mt-4 personaje-img"
+                 [ngClass]="mapaClases[open.affiliation]"
+                 alt="Imagen de {{ open.name }}">
+          </div>
+
+          <!-- Datos -->
+          <div class="col-12 col-md-6 mt-3 mt-md-0">
+            <p>Gremio: {{open.affiliation}}</p>
+            <p>Ki-Base: {{open.ki}}</p>
+            <p>Raza: {{open.race}}</p>
+            <p>Género: {{open.gender}}</p>
+            <p>Ki-Max: {{open.maxKi}}</p>
+            <p>Descripción: {{open.description}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
     }
+
+
+    <!-- Botón para abrir el modal -->
+
+
+
+
+    <div style="width: 100%;">
+
+        <paginador [paginador]="datos.meta" [url]="url" />
+
+    </div>
 </div>
-
-<div style="width: 100%;margin: auto; border:2px red solid">
-
-    <paginador [paginador]="datos.meta" [url]="url"  />
-
-</div>
+}
