@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { SharingDataService } from '../../services/sharing-data/sharing-data.service';
 
 @Component({
   selector: 'paginador',
@@ -12,8 +13,25 @@ export class PaginadorComponent {
   @Input()url!:string;
 
 
-  blockSize = 4; 
 
+
+  blockSize = 4; 
+  opcionesGenero: number[] = [5, 10, 15, 20, 25, 30];
+  
+  numberitems:number=5;
+  constructor(private service: SharingDataService,private router: Router) { }
+
+  // Opciones de items por página
+seleccion_numberitems(event: number) {
+  this.numberitems = event;
+  this.service.filtradoporpage.emit(this.numberitems);
+    // 👇 primero navega a otra página (ejemplo: la última)
+  this.router.navigate([this.url + this.paginador.totalPages]).then(() => {
+    // 👇 luego regresa a la primera página
+    this.router.navigate([this.url + 1]);
+  });
+
+}
 
 get visiblePages(): number[] {
     const half = Math.floor(this.blockSize / 2);

@@ -27,11 +27,17 @@ export class ServiceDataService {
     return this.http.get<any>(this.url+"/characters");
   }
 
+
+
   
   findAllpage(page:number):Observable<any>{
-    return this.http.get<any>(this.url+"/characters?page="+page);
-  }
+    this.service.filtradoporpage.subscribe(limite=>{
+        this.filtrado.limit=limite;
 
+    })
+              return this.http.get<any>(this.url+"/characters?page="+page+"&limit="+this.filtrado.limit);
+
+  }
 findAllpageAndName(name:String):Observable<any>{
   
     return this.http.get<any>(this.url+"/characters?name="+name);
@@ -66,4 +72,5 @@ if (this.filtrado.race && this.filtrado.race.trim() !== '') {
   }
 
 
+  
 }

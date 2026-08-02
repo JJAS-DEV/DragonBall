@@ -15,6 +15,7 @@ export class SharingDataService {
   private _personaje:EventEmitter<any>=new EventEmitter();
   private _mostrartransformaciones:EventEmitter<boolean>=new EventEmitter();
   private _personajeSeleccionado:EventEmitter<Personaje_seleccionado>=new EventEmitter();
+  private _filtrado:EventEmitter<number>=new EventEmitter();
 
 
 
@@ -53,6 +54,10 @@ export class SharingDataService {
 }
 get personajeSeleccionado():EventEmitter<Personaje_seleccionado>{
   return this._personajeSeleccionado;
+}
+get filtradoporpage():EventEmitter<number>{
+  return this._filtrado;
+
 }
 
 }

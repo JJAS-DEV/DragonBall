@@ -3,7 +3,8 @@ export class Filtracion {
     name:string="";
     gender:string="";
     race:string="";
-    affiliation:string="";    
+    affiliation:string="";  
+    limit:number=5;  
 
 
     
