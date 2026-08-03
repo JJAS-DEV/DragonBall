@@ -54,4 +54,31 @@ box-shadow: 0 8px 16px rgba(240, 240, 3, 0.968); /* sombra para resaltar */
     z-index: 1000;
 }
 
+.contenedor-principal {
+  margin-top: 100px; /* espacio para que no quede tapado */
+}
 
+
+
+.descripcion {
+    max-height: 180px;
+    overflow-y: auto;
+    text-align: justify;
+    line-height: 1.6;
+    padding-right: 8px;
+}
+
+.descripcion::-webkit-scrollbar {
+    width: 6px;
+}
+
+.descripcion::-webkit-scrollbar-thumb {
+    background: #ffc107;
+    border-radius: 10px;
+}
+
+.personaje-img {
+    max-height: 330px;
+    width: auto;
+    object-fit: contain;
+}

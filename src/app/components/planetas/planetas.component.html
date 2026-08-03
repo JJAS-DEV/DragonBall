@@ -1,0 +1,32 @@
+
+
+<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+  @for (planeta of planetas; track $index) {
+    
+  <div class="col">
+    <div class="card bg-dark h-100 shadow-sm border-secondary">
+      <div class="card-body text-white text-center">
+        <h5 class="card-title">{{ planeta.name }}</h5>
+        <img [src]="planeta.image" class="personaje-img mt-3 img-hover img-fluid" data-bs-toggle="modal"
+          data-bs-target="#modalOscuro"
+          alt="Imagen de {{ planeta.name }}" >
+      </div>
+
+      <div class="card-footer bg-dark text-white border-top border-secondary">
+        <p class="mb-1">nombre: {{ planeta.name }}</p>
+        <p class="mb-1"> {{ planeta.isDestroyed ? 'Está destruido ☠️' : 'Sigue intacto 🌍' }}</p>
+     
+        <button class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#modalOscuro"
+                >
+          Ver detalle
+        </button>
+      </div>
+    </div>
+  </div>
+  }
+  
+<div class="w-100 mt-4">
+  <paginador [paginador]="datos.meta" [url]="url" />
+</div>
+  
+</div>

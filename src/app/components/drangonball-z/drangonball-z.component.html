@@ -3,103 +3,115 @@
 
 @if(this.personajes.length === 0){
 <div class="card bg-dark h-100 shadow-sm ">
-    <div class="card-body  bg-dark text-white">
-        <h5 class="card-title ">No se encontraron resultados</h5>
-    </div>
+  <div class="card-body  bg-dark text-white">
+    <h5 class="card-title ">No se encontraron resultados</h5>
+  </div>
 </div>
 
 }@else {
-<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-5">
+<!-- GRIDA DE PERSONAJES -->
+<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+  @for (personaje of personajes; track $index) {
+  <div class="col">
+    <div class="card bg-dark h-100 shadow-sm border-secondary">
+      <div class="card-body text-white text-center">
+        <h5 class="card-title">{{ personaje.name }}</h5>
+        <img [src]="personaje.image" class="personaje-img mt-3 img-hover img-fluid" data-bs-toggle="modal"
+          data-bs-target="#modalOscuro" [ngClass]="mapaClases[personaje.affiliation]"
+          alt="Imagen de {{ personaje.name }}" (click)="openModal(personaje)">
+      </div>
 
-    @for (personaje of personajes; track $index){
-
-
-
-    <div class="col">
-
-        <div class="col">
-            <div class="card bg-dark h-100 shadow-sm ">
-                <div class="card-body  bg-dark text-white">
-
-                    <h5 class="card-title ">{{ personaje.name }}</h5>
-                    <img [src]="personaje.image" class="personaje-img mt-3 img-hover" data-bs-toggle="modal"
-                        data-bs-target="#modalOscuro" [ngClass]="mapaClases[personaje.affiliation]"
-                        alt="Imagen de {{ personaje.name }}"
-                        (click)="openModal(personaje)">
-
-                </div>
-
-                <div>
-
-                    <!-- Opcional: Un footer para acciones -->
-                    <div class="card-footer bg-dark color-white border-top-0 " style="color:white">
-                        <p>Gremio:{{personaje.affiliation}}</p>
-                        <p>Kit-Base: {{personaje.ki}}</p>
-                        <p>Raza: {{personaje.race}}</p>
-                        <p>Kit-Max: {{personaje.maxKi}}</p>
-                        <button class="btn btn-outline-primary w-100" data-bs-toggle="modal"
-                            data-bs-target="#modalOscuro" (click)="openModal(personaje)">Ver detalle</button>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
+      <div class="card-footer bg-dark text-white border-top border-secondary">
+        <p class="mb-1">Gremio: {{ personaje.affiliation }}</p>
+        <p class="mb-1">Ki-Base: {{ personaje.ki }}</p>
+        <p class="mb-1">Raza: {{ personaje.race }}</p>
+        <p class="mb-3">Ki-Max: {{ personaje.maxKi }}</p>
+        <button class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#modalOscuro"
+          (click)="openModal(personaje)">
+          Ver detalle
+        </button>
+      </div>
     </div>
+  </div>
+  }
+</div>
 
+<!-- PAGINADOR -->
+<div class="w-100 mt-4">
+  <paginador [paginador]="datos.meta" [url]="url" />
+</div>
 
-    <!-- Modal -->
-<div class="modal fade m-3" id="modalOscuro" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
+<!-- MODAL ÚNICO (FUERA DEL @for y del .row) -->
+<div class="modal fade" id="modalOscuro" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
     <div class="modal-content bg-dark text-white">
-      <div class="modal-header border-0">
-        <h5 class="modal-title">{{ open.name }}</h5>
+
+      <div class="modal-header border-secondary">
+        <h5 class="modal-title">{{ open?.name }}</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
+
       <div class="modal-body">
-        <div class="row">
-          <!-- Imagen -->
-          <div class="col-12 col-md-6 text-center">
-            <img [src]="open.image"
-                 class="img-fluid mt-4 personaje-img"
-                 [ngClass]="mapaClases[open.affiliation]"
-                 alt="Imagen de {{ open.name }}">
+        <div class="row g-3">
+          <!-- Imagen y Carrusel -->
+
+          <div class="col-12 col-md-6 text-center d-flex flex-column align-items-center justify-content-center">
+
+            @if(personaje_seleccionado.seleccionado) {
+            <img [src]="personaje_seleccionado.transformaciones.image" class="img-fluid personaje-img mb-3"
+              [ngClass]="mapaClases[open?.affiliation || '']" alt="Imagen de {{ open?.name }}"
+              style="max-height: 280px; object-fit: contain;">
+
+
+            }@else{
+            <img [src]="open?.image" class="img-fluid personaje-img mb-3"
+              [ngClass]="mapaClases[open?.affiliation || '']" alt="Imagen de {{ open?.name }}"
+              style="max-height: 280px; object-fit: contain;">
+            }
+
+
+
+            <carrucel-imagenes [personaje]="open" class="w-100"></carrucel-imagenes>
           </div>
 
-          <!-- Datos -->
-          <div class="col-12 col-md-6 mt-3 mt-md-0">
-            <p>Gremio: {{open.affiliation}}</p>
-            <p>Ki-Base: {{open.ki}}</p>
-            <p>Raza: {{open.race}}</p>
-            <p>Género: {{open.gender}}</p>
-            <p>Ki-Max: {{open.maxKi}}</p>
-            <p>Descripción: {{open.description}}</p>
+          <!-- Datos del Personaje -->
+
+          <div class="col-12 col-md-6">
+            <div class="p-2">
+              @if(personaje_seleccionado.seleccionado) {
+              <p><strong>Gremio:</strong> {{ open?.affiliation }}</p>
+
+              <p><strong>nombre de transformación:</strong> {{ personaje_seleccionado.transformaciones.name }} </p>
+              <p><strong>Raza:</strong> {{ open?.race }}</p>
+              <p><strong>Género:</strong> {{ open?.gender }}</p>
+              <p><strong>Ki-Max:</strong> {{ personaje_seleccionado.transformaciones.ki }}</p>
+              <p><strong>Planeta:</strong> {{ open?.originPlanet?.name }}</p>
+              <p class="text-break"><strong>Descripción:</strong> {{ open?.description }}</p>
+
+
+              }@else {
+              <p><strong>Gremio:</strong> {{ open?.affiliation }}</p>
+              <p><strong>Ki-Base:</strong> {{ open?.ki }}</p>
+              <p><strong>Raza:</strong> {{ open?.race }}</p>
+              <p><strong>Género:</strong> {{ open?.gender }}</p>
+              <p><strong>Ki-Max:</strong> {{ open?.maxKi }}</p>
+              <p><strong>Planeta:</strong> {{ open?.originPlanet?.name }}</p>
+              <p class="text-break"><strong>Descripción:</strong> {{ open?.description }}</p>
+
+              }
+
+            </div>
           </div>
         </div>
       </div>
-      <div class="modal-footer border-0">
+
+      <div class="modal-footer border-secondary">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
+
     </div>
   </div>
 </div>
 
 
-
-
-    }
-
-
-    <!-- Botón para abrir el modal -->
-
-
-
-
-    <div style="width: 100%;">
-
-        <paginador [paginador]="datos.meta" [url]="url" />
-
-    </div>
-</div>
 }

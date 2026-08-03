@@ -1,0 +1,31 @@
+@if(personaje.transformations.length > 0) {
+  <div class="row justify-content-center">
+    @for (item of elementosVisibles; track $index) {
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+        <div class="card shadow-sm bg-dark text-white ">
+          <div class="card-body text-center">
+            <img [src]="item.image"
+                 class="img-fluid personaje-img img-hover"(click)="personajeSeleccionado(item)"
+                 alt="Imagen de {{ item.name }}" >
+          </div>
+        </div>
+      </div>
+
+
+    }
+  </div>
+
+  <div class="text-center mt-3">
+    <button class="btn btn-dark mx-2"
+            (click)="anterior()"
+            [disabled]="paginaActual === 0">
+      ◀ Anterior
+    </button>
+    <button class="btn btn-dark mx-2"
+            (click)="siguiente()"
+            [disabled]="(paginaActual + 1) * itemsPorPagina >= lista.length">
+      Siguiente ▶
+    </button>
+  </div>
+}
+

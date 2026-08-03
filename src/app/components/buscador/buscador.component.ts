@@ -55,6 +55,7 @@ export class BuscadorComponent implements OnInit {
     this.termino = item.name;
 
     this.filtrado.affiliation = item.affiliation;
+    this.filtrado.gender = item.gender;
 
 
     this.service.datos.emit(item)
@@ -79,6 +80,7 @@ export class BuscadorComponent implements OnInit {
   Buscador() {
 
     this.filtrado.name = this.termino;
+    
     this.service.filtro.emit(this.filtrado);
  this.servicehttp.findAllpageconFiltro().subscribe(datos=>{
       this.service.datos.emit(datos);
@@ -105,6 +107,22 @@ export class BuscadorComponent implements OnInit {
 
   }
 
+  seleccion_genero(gender: string): void {
+  if (gender === "sin_filtro") {
+    this.filtrado.gender = "";
+  } else {
+    this.filtrado.gender = gender;
+  }
+}
+  seleccion_race(race: string): void {
+  if (race === "sin_filtro") {
+    this.filtrado.race = "";
+  } else {
+    this.filtrado.race = race;
+  }
+}
+
+
 
   opcionesRaza: string[] = ['Z Fighter',
     
@@ -115,6 +133,13 @@ export class BuscadorComponent implements OnInit {
     'Villain',
     'Other',
     'sin_filtro'];
+
+
+  opcionesGenero: string[] = ['Male', 'Female', 'Unknown', 'sin_filtro'];
+
+  opcionesRace: string[] = ['Human', 'Saiyan', 'Namekian', 'Majin', 'Frieza Race', 'Android', 'Jiren Race', 'God', 'Angel', 'Evil', 'Nucleico', 'Nucleico benigno', 'Unknown', 'sin_filtro'];
+
+
 
 
 }

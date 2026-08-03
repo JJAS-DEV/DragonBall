@@ -27,15 +27,32 @@ export class ServiceDataService {
     return this.http.get<any>(this.url+"/characters");
   }
 
+
+
+
   
   findAllpage(page:number):Observable<any>{
-    return this.http.get<any>(this.url+"/characters?page="+page);
-  }
+    this.service.filtradoporpage.subscribe(limite=>{
+        this.filtrado.limit=limite;
 
+    })
+              return this.http.get<any>(this.url+"/characters?page="+page+"&limit="+this.filtrado.limit);
+
+  }
 findAllpageAndName(name:String):Observable<any>{
   
     return this.http.get<any>(this.url+"/characters?name="+name);
   }
+
+
+  findAllpageplanaet(page:number):Observable<any>{
+
+        return this.http.get<any>(this.url+"/planets?page="+page);
+
+
+  }
+
+
 
 findAllpageconFiltro():Observable<any>{
 
@@ -49,12 +66,22 @@ if (this.filtrado.name && this.filtrado.name.trim() !== '') {
 if (this.filtrado.affiliation && this.filtrado.affiliation.trim() !== '') {
   params = params.set('affiliation', this.filtrado.affiliation);
 }
+if (this.filtrado.gender && this.filtrado.gender.trim() !== '') {
+  params = params.set('gender', this.filtrado.gender);
+}
+if (this.filtrado.race && this.filtrado.race.trim() !== '') {
+  params = params.set('race', this.filtrado.race);
+}
+
   
     return this.http.get<any>(this.url+"/characters?",{params});
+  }
+
+  findById(id:number):Observable<any>{
+    
+    return this.http.get<any>(this.url+"/characters/"+id);
+  }
+
+
   
-
-    }
-
-
-
 }
