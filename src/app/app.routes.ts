@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { DrangonballZComponent } from './components/drangonball-z/drangonball-z.component';
+import { PlanetasComponent } from './components/planetas/planetas.component';
 
 export const routes: Routes = [
     {
@@ -13,6 +14,11 @@ export const routes: Routes = [
     component:DrangonballZComponent
 },
 {  path:'personajes/page/:page',
-    component:DrangonballZComponent}
+    component:DrangonballZComponent},
+
+    {
+  path:'planetas/page/:page',
+    component:PlanetasComponent}
+    
 
 ];

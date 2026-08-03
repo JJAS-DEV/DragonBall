@@ -29,6 +29,7 @@ export class ServiceDataService {
 
 
 
+
   
   findAllpage(page:number):Observable<any>{
     this.service.filtradoporpage.subscribe(limite=>{
@@ -42,6 +43,16 @@ findAllpageAndName(name:String):Observable<any>{
   
     return this.http.get<any>(this.url+"/characters?name="+name);
   }
+
+
+  findAllpageplanaet(page:number):Observable<any>{
+
+        return this.http.get<any>(this.url+"/planets?page="+page);
+
+
+  }
+
+
 
 findAllpageconFiltro():Observable<any>{
 
