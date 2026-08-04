@@ -9,4 +9,9 @@ import { RouterModule } from '@angular/router';
 })
 export class NavbarComponent {
 
+  borraritemestado():void{
+    localStorage.removeItem('numero');
+
+  }
+
 }

@@ -18,21 +18,62 @@ export class PaginadorComponent {
   blockSize = 4; 
   opcionesGenero: number[] = [5, 10, 15, 20, 25, 30];
   
-  numberitems:number=5;
-  constructor(private service: SharingDataService,private router: Router) { }
+   numberitems:number;
+  constructor(private service: SharingDataService,private router: Router) {
+     const valorGuardado = localStorage.getItem('numero');
+    if (valorGuardado) {
+      this.numberitems = Number(valorGuardado);
+
+        this.service.filtradoporpage.emit(this.numberitems);
+
+    } else {
+      // Si no hay nada guardado, asignamos un número por defecto
+      this.numberitems = 5; // 👈 aquí colocas el número que quieras
+    }
+
+   }
 
   // Opciones de items por página
 seleccion_numberitems(event: number) {
-  this.numberitems = event;
-  this.service.filtradoporpage.emit(this.numberitems);
+
+  this.service.filtradoporpage.emit(event);
     // 👇 primero navega a otra página (ejemplo: la última)
-  this.router.navigate([this.url + this.paginador.totalPages]).then(() => {
+
+    localStorage.setItem('numero', event.toString());
+        if(this.verificarTexto("planetas")){
+
+             this.router.navigate(["/personajes/page/1"]).then(() => {
     // 👇 luego regresa a la primera página
-    this.router.navigate([this.url + 1]);
+    if(this.verificarTexto("planetas")){
+
+      this.router.navigate([this.url+1]);
+    }else{
+            this.router.navigate([this.url+0]);
+
+    }
+
+  
   });
+
+        }else{
+           this.router.navigate(["/planetas/page/1"]).then(() => {
+    // 👇 luego regresa a la primera página
+    if(this.verificarTexto("planetas")){
+
+      this.router.navigate([this.url+1]);
+    }else{
+            this.router.navigate([this.url+0]);
+
+    }
+  });
+        }
+ 
 
 }
 
+verificarTexto(palabra: string): boolean {
+  return this.url.includes(palabra);
+}
 get visiblePages(): number[] {
     const half = Math.floor(this.blockSize / 2);
 

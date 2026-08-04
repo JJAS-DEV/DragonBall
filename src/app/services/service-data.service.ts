@@ -47,7 +47,7 @@ findAllpageAndName(name:String):Observable<any>{
 
   findAllpageplanaet(page:number):Observable<any>{
 
-        return this.http.get<any>(this.url+"/planets?page="+page);
+        return this.http.get<any>(this.url+"/planets?page="+page+"&limit="+this.filtrado.limit);
 
 
   }
