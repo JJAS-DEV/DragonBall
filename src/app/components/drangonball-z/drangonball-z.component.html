@@ -26,8 +26,8 @@
         <p class="mb-1">Ki-Base: {{ personaje.ki }}</p>
         <p class="mb-1">Raza: {{ personaje.race }}</p>
         <p class="mb-3">Ki-Max: {{ personaje.maxKi }}</p>
-        <button class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#modalOscuro"
-          (click)="openModal(personaje)">
+        <button class="btn btn-outline-primary w-100" 
+           [routerLink]="['/personaje',personaje.id]">
           Ver detalle
         </button>
       </div>

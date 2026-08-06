@@ -30,8 +30,6 @@ export class CarrucelImagenesComponent implements OnInit {
     this.primeraTransformacion();
 
 
-
-
   }
   ngOnInit(): void {
 

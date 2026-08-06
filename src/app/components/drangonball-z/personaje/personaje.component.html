@@ -1,0 +1,49 @@
+<div class="container"  style="margin-top: 100px;">
+    <div class="container my-4">
+  <div class="row g-3">
+    <!-- Imagen y Carrusel -->
+    <div class="col-12 col-md-6 text-center d-flex flex-column align-items-center justify-content-center">
+      @if(personaje_seleccionado.seleccionado) {
+      <img [src]="personaje_seleccionado.transformaciones.image"
+           class="img-fluid personaje-img mb-3"
+           [ngClass]="mapaClases[open?.affiliation || '']"
+           alt="Imagen de {{ open?.name }}"
+           style="max-height: 280px; object-fit: contain;">
+      }@else{
+      <img [src]="open?.image"
+           class="img-fluid personaje-img mb-3"
+           [ngClass]="mapaClases[open?.affiliation || '']"
+           alt="Imagen de {{ open?.name }}"
+           style="max-height: 280px; object-fit: contain;">
+      }
+
+      <carrucel-imagenes [personaje]="open" class="w-100"></carrucel-imagenes>
+    </div>
+
+    <!-- Datos del Personaje -->
+    <div class="col-12 col-md-6">
+      <div class="p-2">
+        @if(personaje_seleccionado.seleccionado) {
+        <p><strong>Gremio:</strong> {{ open?.affiliation }}</p>
+        <p><strong>Transformación:</strong> {{ personaje_seleccionado.transformaciones.name }}</p>
+        <p><strong>Raza:</strong> {{ open?.race }}</p>
+        <p><strong>Género:</strong> {{ open?.gender }}</p>
+        <p><strong>Ki-Max:</strong> {{ personaje_seleccionado.transformaciones.ki }}</p>
+        <p><strong>Planeta:</strong> {{ open?.originPlanet?.name }}</p>
+        <p class="text-break"><strong>Descripción:</strong> {{ open?.description }}</p>
+        }@else {
+        <p><strong>Gremio:</strong> {{ open?.affiliation }}</p>
+        <p><strong>Ki-Base:</strong> {{ open?.ki }}</p>
+        <p><strong>Raza:</strong> {{ open?.race }}</p>
+        <p><strong>Género:</strong> {{ open?.gender }}</p>
+        <p><strong>Ki-Max:</strong> {{ open?.maxKi }}</p>
+        <p><strong>Planeta:</strong> {{ open?.originPlanet?.name }}</p>
+        <p class="text-break"><strong>Descripción:</strong> {{ open?.description }}</p>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
