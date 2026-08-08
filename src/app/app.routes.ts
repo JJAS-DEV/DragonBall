@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { DrangonballZComponent } from './components/drangonball-z/drangonball-z.component';
 import { PlanetasComponent } from './components/planetas/planetas.component';
+import { PersonajeComponent } from './components/drangonball-z/personaje/personaje.component';
 
 export const routes: Routes = [
     {
@@ -18,7 +19,12 @@ export const routes: Routes = [
 
     {
   path:'planetas/page/:page',
-    component:PlanetasComponent}
+    component:PlanetasComponent},
+
+    {
+        path:'personaje/:id',
+        component:PersonajeComponent
+    }
     
 
 ];

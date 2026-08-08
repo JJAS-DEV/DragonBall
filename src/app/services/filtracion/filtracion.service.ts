@@ -20,7 +20,6 @@ export class FiltracionService {
 
   findAll(page: number) {
 
-    this.route.paramMap.subscribe(params => {
 
       this.serviceDataService.findAllpage(page).subscribe(pageable => {
         this.datos = pageable;
@@ -30,7 +29,6 @@ export class FiltracionService {
 
       });
 
-    })
 
   }
 
