@@ -82,6 +82,10 @@ if (this.filtrado.race && this.filtrado.race.trim() !== '') {
     return this.http.get<any>(this.url+"/characters/"+id);
   }
 
+  findByIdPlanete(id:number):Observable<any>{
+    
+    return this.http.get<any>(this.url+"/planets/"+id);
+  }
 
   
 }

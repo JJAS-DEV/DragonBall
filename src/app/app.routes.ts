@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { DrangonballZComponent } from './components/drangonball-z/drangonball-z.component';
 import { PlanetasComponent } from './components/planetas/planetas.component';
 import { PersonajeComponent } from './components/drangonball-z/personaje/personaje.component';
+import { DetalleplanetaComponent } from './components/planetas/detalleplaneta/detalleplaneta.component';
 
 export const routes: Routes = [
     {
@@ -24,7 +25,10 @@ export const routes: Routes = [
     {
         path:'personaje/:id',
         component:PersonajeComponent
-    }
+    },
     
 
+    {
+  path:'planetas/detalle/:id',
+    component:DetalleplanetaComponent}
 ];

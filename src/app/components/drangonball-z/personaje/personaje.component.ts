@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { transformations } from '../../../models/transformations';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ServiceDataService } from '../../../services/service-data.service';
 import { Personaje_seleccionado } from '../../../models/Personaje_seleccionado';
 import { DrangonballZComponent } from '../drangonball-z.component';
@@ -11,7 +11,7 @@ import { SharingDataService } from '../../../services/sharing-data/sharing-data.
 
 @Component({
   selector: 'app-personaje',
-  imports: [CommonModule, CarrucelImagenesComponent],
+  imports: [CommonModule, CarrucelImagenesComponent,RouterModule],
   templateUrl: './personaje.component.html',
   styleUrls: ['./personaje.component.css', "../drangonball-z.component.css"]
  
