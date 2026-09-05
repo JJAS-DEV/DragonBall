@@ -3,6 +3,7 @@ import { DrangonballZComponent } from './components/drangonball-z/drangonball-z.
 import { PlanetasComponent } from './components/planetas/planetas.component';
 import { PersonajeComponent } from './components/drangonball-z/personaje/personaje.component';
 import { DetalleplanetaComponent } from './components/planetas/detalleplaneta/detalleplaneta.component';
+import { PersonajesFavoritosComponent } from './components/personajes-favoritos/personajes-favoritos.component';
 
 export const routes: Routes = [
     {
@@ -25,6 +26,10 @@ export const routes: Routes = [
     {
         path:'personaje/:id',
         component:PersonajeComponent
+    },
+     {
+        path:'personajesFavoritos',
+        component:PersonajesFavoritosComponent
     },
     
 

@@ -1,0 +1,47 @@
+
+
+<div class="row" style="margin-top: 100px;">
+  @if (favoritos.length === 0) {
+    <div class="col-12 text-center text-muted">
+      <h3>No tienes favoritos 😢</h3>
+    </div>
+  } @else {
+    @for (favorito of favoritos; track $index) {
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="card bg-dark h-100 shadow-sm border-secondary">
+          <div class="card-body text-white text-center">
+            <!-- Nombre -->
+            <h5 class="card-title d-flex justify-content-center align-items-center">
+              {{ favorito.name }}
+            </h5>
+
+            <!-- Imagen -->
+            <img [src]="favorito.image" class="personaje-img mt-3 img-hover img-fluid"
+              [ngClass]="mapaClases[favorito.affiliation]"
+              alt="Imagen de {{ favorito.name }}">
+          </div>
+
+          <div class="card-footer bg-dark text-white border-top border-secondary">
+            <p class="mb-1">Gremio: {{ favorito.affiliation }}</p>
+            <p class="mb-1">Ki-Base: {{ favorito.ki }}</p>
+            <p class="mb-1">Raza: {{ favorito.race }}</p>
+            <p class="mb-3">Ki-Max: {{ favorito.maxKi }}</p>
+
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-primary w-50" 
+                 [routerLink]="['/personaje',favorito.id]">
+                Ver detalle
+              </button>
+
+              <button class="btn btn-outline-danger w-50"
+                      (click)="eliminarFavorito(favorito.id)">
+                Eliminar ❌
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  }
+</div>
+
