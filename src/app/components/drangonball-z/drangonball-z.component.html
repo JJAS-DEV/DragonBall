@@ -11,29 +11,45 @@
 }@else {
 <!-- GRIDA DE PERSONAJES -->
 <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-  @for (personaje of personajes; track $index) {
+@for (personaje of personajes; track $index) {
   <div class="col">
     <div class="card bg-dark h-100 shadow-sm border-secondary">
       <div class="card-body text-white text-center">
+        <!-- Nombre -->
         <h5 class="card-title">{{ personaje.name }}</h5>
-        <img [src]="personaje.image" class="personaje-img mt-3 img-hover img-fluid" data-bs-toggle="modal"
-          data-bs-target="#modalOscuro" [ngClass]="mapaClases[personaje.affiliation]"
+
+        <!-- Imagen -->
+        <img [src]="personaje.image" class="personaje-img mt-3 img-hover img-fluid"
+          data-bs-toggle="modal" data-bs-target="#modalOscuro"
+          [ngClass]="mapaClases[personaje.affiliation]"
           alt="Imagen de {{ personaje.name }}" (click)="openModal(personaje)">
       </div>
 
+      <!-- Footer con dos botones lado a lado -->
       <div class="card-footer bg-dark text-white border-top border-secondary">
         <p class="mb-1">Gremio: {{ personaje.affiliation }}</p>
         <p class="mb-1">Ki-Base: {{ personaje.ki }}</p>
         <p class="mb-1">Raza: {{ personaje.race }}</p>
         <p class="mb-3">Ki-Max: {{ personaje.maxKi }}</p>
-        <button class="btn btn-outline-primary w-100" 
-           [routerLink]="['/personaje',personaje.id]">
-          Ver detalle
-        </button>
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary w-50" 
+             [routerLink]="['/personaje',personaje.id]">
+            Ver detalle
+          </button>
+
+          <button class="btn btn-outline-danger w-50"
+                 (click)="toggleLike(personaje)">
+                  favorito
+           
+          </button>
+        </div>
       </div>
     </div>
   </div>
-  }
+}
+
+
 </div>
 
 <!-- PAGINADOR -->

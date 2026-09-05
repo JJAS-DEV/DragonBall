@@ -1,0 +1,18 @@
+<div style="margin-top: 90px;" class="row g-3">
+  <!-- Imagen del planeta -->
+  <div class="col-12 col-md-6 text-center d-flex flex-column align-items-center justify-content-center">
+    <img [src]="planeta.image"
+         class="img-fluid planeta-img mb-3"
+         alt="Imagen de {{ planeta.name }}"
+         style="max-height: 280px; object-fit: contain;">
+  </div>
+
+  <!-- Datos del planeta -->
+  <div class="col-12 col-md-6">
+    <div class="p-2">
+      <p><strong>Nombre:</strong> {{ planeta.name }}</p>
+      <p><strong>Estado:</strong> {{ planeta.isDestroyed ? 'Destruido' : 'Activo' }}</p>
+      <p class="text-break"><strong>Descripción:</strong> {{ planeta.description }}</p>
+    </div>
+  </div>
+</div>

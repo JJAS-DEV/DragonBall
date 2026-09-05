@@ -9,6 +9,7 @@ import { FiltracionService } from '../../services/filtracion/filtracion.service'
 import { CommonModule } from '@angular/common';
 import { CarrucelImagenesComponent } from "../carrucel-imagenes/carrucel-imagenes.component";
 import { Personaje_seleccionado } from '../../models/Personaje_seleccionado';
+import { FavoritosService } from '../../services/favoritos.service';
 
 
 @Component({
@@ -30,6 +31,12 @@ export class DrangonballZComponent implements OnInit {
 
 
   buscador: string = "";
+  
+toggleLike(personaje: any) {
+  console.log("toggleLike lo agrego a favorito:", personaje);
+   personaje.favorito = !personaje.favorito;
+    this.favoritosService.toggleFavorite(personaje);
+}
 
   
     openModal(p: Personaje) {
@@ -58,8 +65,10 @@ export class DrangonballZComponent implements OnInit {
   }
 
 
-  constructor(private service: ServiceDataService, private route: ActivatedRoute, private sharingDataService: SharingDataService, private filtracionService: FiltracionService) {
-  }
+  constructor(private service: ServiceDataService, private route: ActivatedRoute,
+     private sharingDataService: SharingDataService, private filtracionService: FiltracionService,
+    private favoritosService: FavoritosService) { }
+  
 
   ngOnInit(): void {
 
@@ -71,6 +80,7 @@ export class DrangonballZComponent implements OnInit {
     });
 
 
+    
 
 
 

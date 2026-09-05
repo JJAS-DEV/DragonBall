@@ -17,8 +17,8 @@
         <p class="mb-1"> {{ planeta.isDestroyed ? 'Está destruido ☠️' : 'Sigue intacto 🌍' }}</p>
      
         <button class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#modalOscuro"
-                >
-          Ver detalle
+                [routerLink]="['/planetas/detalle', planeta.id]">
+          Ver detalles
         </button>
       </div>
     </div>

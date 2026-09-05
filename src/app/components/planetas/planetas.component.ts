@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { originPlanet } from '../../models/originPlanet';
 import { ServiceDataService } from '../../services/service-data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { PaginadorComponent } from "../paginador/paginador.component";
 
 @Component({
   selector: 'app-planetas',
-  imports: [PaginadorComponent],
+  imports: [PaginadorComponent,RouterModule],
   templateUrl: './planetas.component.html',
   styleUrl: './planetas.component.css'
 })

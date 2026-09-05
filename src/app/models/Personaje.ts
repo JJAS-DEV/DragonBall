@@ -13,6 +13,7 @@ export class Personaje {
     image!:string;
     originPlanet: originPlanet= new originPlanet();
     transformations: transformations[]= [];
+    favorito: boolean = false; // Nueva propiedad para el estado de "like"
     
    
 }
