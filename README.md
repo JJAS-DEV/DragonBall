@@ -1,7 +1,8 @@
 # Dragon Ball API Client ⚡
 
-Aplicación en Angular 19 que consume la [Dragon Ball API](https://dragonball-api.com) para mostrar personajes, aplicar filtros y paginación y agregar favoritos.
- **Demo en línea:** [Ver proyecto aquí](https://jjas-dev.github.io/DragonBall/)
+-Aplicación en Angular 19 que consume la [Dragon Ball API](https://web.dragonball-api.com/) 
+para mostrar personajes, aplicar filtros y paginación y agregar favoritos.
+- **Demo en línea:** [Ver proyecto aquí](https://jjas-dev.github.io/DragonBall/)
 ---
 ## 🎓 Contexto del proyecto
 Su objetivo fue aplicar los conocimientos adquiridos en:
